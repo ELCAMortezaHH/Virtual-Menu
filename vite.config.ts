@@ -1,8 +1,6 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import { URL, fileURLToPath } from "node:url"
-import VueI18n from "@intlify/unplugin-vue-i18n/vite"
-import path from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,19 +10,17 @@ export default defineConfig({
         hmr: {
             host: "localhost",
         },
+        proxy: {
+            "/api": "http://localhost:3000",
+        },
     },
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url)),
         },
     },
-    plugins: [
-        vue(),
-        VueI18n({
-            runtimeOnly: true,
-            compositionOnly: true,
-            fullInstall: true,
-            include: [path.resolve(__dirname, "locales/**")],
-        }),
-    ],
+    build: {
+        target: "esnext",
+    },
+    plugins: [vue()],
 })

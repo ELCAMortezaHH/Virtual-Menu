@@ -1,5 +1,5 @@
 {
-    "compilerOptions": {
+"compilerOptions": {
         "baseUrl": ".",
         "target": "ES2020",
         "useDefineForClassFields": true,
